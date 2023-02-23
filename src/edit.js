@@ -29,6 +29,7 @@ import { PanelBody, TextControl, Button } from '@wordpress/components'
 import './editor.scss';
 import Label from './components/Label';
 import HelperText from './components/HelperText';
+import Lightbox from './components/Lightbox';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -71,9 +72,12 @@ export default function Edit({ attributes, setAttributes }) {
 					value={mediaId}
 					render={({ open }) => (
 						mediaId && mediaUrl ? (
-							<a href={mediaUrl} data-lightbox={dataLightbox} data-title={mediaCaption} className="simple-lightbox-block">
-								<img src={mediaUrl} alt={mediaAlt} />
-							</a>
+							<Lightbox
+								mediaUrl={mediaUrl}
+								mediaAlt={mediaAlt}
+								mediaCaption={mediaCaption}
+								dataLightbox={dataLightbox}
+							/>
 						) : (
 							<Button className="button button-large" onClick={open}>
 								画像アップロード

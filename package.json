@@ -20,6 +20,7 @@
 		"@wordpress/scripts": "^25.4.0"
 	},
 	"dependencies": {
-		"@wordpress/components": "^23.4.0"
+		"@wordpress/components": "^23.4.0",
+		"lightbox2": "^2.11.4"
 	}
 }

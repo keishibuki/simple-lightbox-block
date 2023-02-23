@@ -5,6 +5,9 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 
+import Lightbox from "./components/Lightbox";
+
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -14,12 +17,16 @@
  *
  * @return {WPElement} Element to render.
  */
+
 export default function save(props) {
 	const { attributes: { dataLightbox, mediaUrl, mediaAlt, mediaCaption } } = props;
 
 	return (
-		<a href={mediaUrl} data-lightbox={dataLightbox} data-title={mediaCaption} className="simple-lightbox-block" >
-			<img src={mediaUrl} alt={mediaAlt} />
-		</a>
+		<Lightbox
+			mediaUrl={mediaUrl}
+			mediaAlt={mediaAlt}
+			mediaCaption={mediaCaption}
+			dataLightbox={dataLightbox}
+		/>
 	);
 }

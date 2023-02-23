@@ -8,6 +8,18 @@
 .simple-lightbox-block {
 	display: inline-block;
 	img {
+		height: auto;
+		max-height: 100%;
+		max-width: 100%;
 		vertical-align: middle;
+	}
+}
+
+#lightbox {
+	display: flex;
+	flex-direction: column-reverse;
+	.lb-dataContainer {
+		padding-top: 0;
+		padding-bottom: 8px;
 	}
 }

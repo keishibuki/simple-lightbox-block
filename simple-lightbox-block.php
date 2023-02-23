@@ -23,15 +23,34 @@
 function create_block_simple_lightbox_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
 
-	// エディターデフォルトスタイル
-	wp_enqueue_style( 'wp-format-library' );
 
-	// カスタムスタイル
-	wp_enqueue_style(
-		'simple-lightbox-block-styles', // ハンドル
-		plugins_url( 'build/index.css', __FILE__ ), // ブロックエディター CSS.
-		array( 'wp-edit-blocks' ), // この下に CSS を含むための依存
-		filemtime( __DIR__ . '/build/index.css' )
+	add_action(
+		'wp_enqueue_scripts',
+		function() {
+			wp_enqueue_script( 'simple-lightbox-block-js', plugins_url( 'simple-lightbox-block/node_modules/lightbox2/dist/js/lightbox.min.js' ), array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_style( 'simple-lightbox-block-css', plugins_url( 'simple-lightbox-block/node_modules/lightbox2/dist/css/lightbox.min.css' ), array(), '1.0.0' );
+
+			if ( ! wp_script_is( 'jquery', 'done' ) ) {
+				wp_enqueue_script( 'jquery' );
+			}
+
+			$script = '
+				document.addEventListener("DOMContentLoaded", function() {
+					lightbox.option({
+						albumLabel: "",
+						fadeDuration: 600,
+						resizeDuration: 200,
+						positionFromTop: 50,
+						disableScrolling: true,
+						wrapAround: true,
+					});
+				});
+			';
+			wp_add_inline_script( 'jquery-migrate', $script, 'after' );
+		},
+		10,
+		1
 	);
 }
+
 add_action( 'init', 'create_block_simple_lightbox_block_block_init' );
