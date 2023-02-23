@@ -27,8 +27,8 @@ function create_block_simple_lightbox_block_block_init() {
 	add_action(
 		'wp_enqueue_scripts',
 		function() {
-			wp_enqueue_script( 'simple-lightbox-block-js', plugins_url( 'simple-lightbox-block/node_modules/lightbox2/dist/js/lightbox.min.js' ), array( 'jquery' ), '1.0.0', true );
-			wp_enqueue_style( 'simple-lightbox-block-css', plugins_url( 'simple-lightbox-block/node_modules/lightbox2/dist/css/lightbox.min.css' ), array(), '1.0.0' );
+			wp_enqueue_script( 'simple-lightbox-block-js', plugins_url( 'simple-lightbox-block/build/js/lightbox.min.js' ), array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_style( 'simple-lightbox-block-css', plugins_url( 'simple-lightbox-block/build/css/lightbox.min.css' ), array(), '1.0.0' );
 
 			if ( ! wp_script_is( 'jquery', 'done' ) ) {
 				wp_enqueue_script( 'jquery' );
