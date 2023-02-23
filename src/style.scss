@@ -5,23 +5,9 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.label {
-	display: block;
-	margin-bottom: 8px;
-	font-weight: bold;
-}
-
-.block-editor-block-inspector {
-	.text-field {
-		margin-bottom: 0;
-		.components-text-control__input {
-			padding: 16px 8px;
-			border: 1px solid #aaa;
-		}
-	}
-
-	.helper-text {
-		font-size: 12px;
-		color: #ccc;
+.simple-lightbox-block {
+	display: inline-block;
+	img {
+		vertical-align: middle;
 	}
 }

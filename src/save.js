@@ -4,7 +4,6 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,10 +14,12 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save(props) {
+	const { attributes: { dataLightbox, mediaUrl, mediaAlt, mediaCaption } } = props;
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Simple Lightbox Block – hello from the saved content!' }
-		</p>
+		<a href={mediaUrl} data-lightbox={dataLightbox} data-title={mediaCaption} className="simple-lightbox-block" >
+			<img src={mediaUrl} alt={mediaAlt} />
+		</a>
 	);
 }

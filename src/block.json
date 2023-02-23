@@ -20,7 +20,16 @@
             "source": "attribute",
             "selector": "img",
             "attribute": "src"
-        }
+        },
+		"mediaAlt": {
+			"type": "string",
+            "source": "attribute",
+            "selector": "img",
+            "attribute": "alt"
+		},
+		"mediaCaption": {
+			"type": "string"
+		}
     },
 	"textdomain": "simple-lightbox-block",
 	"editorScript": "file:./index.js",

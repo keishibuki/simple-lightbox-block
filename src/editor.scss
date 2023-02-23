@@ -7,3 +7,24 @@
 .wp-block-create-block-simple-lightbox-block {
 	border: 1px dotted #f00;
 }
+
+.block-editor-block-inspector {
+	.label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: bold;
+	}
+
+	.text-field {
+		margin-bottom: 0;
+		.components-text-control__input {
+			padding: 16px 8px;
+			border: 1px solid #aaa;
+		}
+	}
+
+	.helper-text {
+		font-size: 12px;
+		color: #ccc;
+	}
+}

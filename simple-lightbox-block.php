@@ -22,5 +22,16 @@
  */
 function create_block_simple_lightbox_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
+
+	// エディターデフォルトスタイル
+	wp_enqueue_style( 'wp-format-library' );
+
+	// カスタムスタイル
+	wp_enqueue_style(
+		'simple-lightbox-block-styles', // ハンドル
+		plugins_url( 'build/index.css', __FILE__ ), // ブロックエディター CSS.
+		array( 'wp-edit-blocks' ), // この下に CSS を含むための依存
+		filemtime( __DIR__ . '/build/index.css' )
+	);
 }
 add_action( 'init', 'create_block_simple_lightbox_block_block_init' );

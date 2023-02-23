@@ -39,17 +39,20 @@ import HelperText from './components/HelperText';
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { mediaId, mediaUrl } = attributes;
+	const { dataLightbox, mediaId, mediaUrl, mediaAlt, mediaCaption } = attributes;
 
 	const onChangeDataLightbox = ( dataLightbox ) => {
 		setAttributes( { dataLightbox: dataLightbox } );
 	};
 
 	const onChangeMedia = (media) => {
-		setAttributes( {
+		setAttributes({
+			...attributes,
 			mediaUrl: media.url,
 			mediaId: media.id,
-		} );
+			mediaAlt: media.alt,
+			mediaCaption: media.caption,
+		});
 	};
 
 	return (
@@ -57,28 +60,28 @@ export default function Edit({ attributes, setAttributes }) {
 			<InspectorControls key="setting">
 				<PanelBody title="ブロックの設定">
 					<Label htmlFor="dataLightbox">Lightboxの設定ID</Label>
-					<TextControl value={attributes.dataLightbox} placeholder="lightbox" onChange={onChangeDataLightbox} className="text-field" />
+					<TextControl value={dataLightbox} placeholder="lightbox" onChange={onChangeDataLightbox} className="text-field" />
 					<HelperText>※異なる画像に同じIDを設定すると複数枚の挙動になります</HelperText>
 				</PanelBody>
 			</InspectorControls>
-			<div className="image">
-				<MediaUploadCheck>
-					<MediaUpload
-						onSelect={onChangeMedia}
-						allowedTypes={['image']}
-						value={mediaId}
-						render={({ open }) => (
-							mediaId && mediaUrl ? (
-								<img src={mediaUrl} />
-							) : (
-								<Button className="button button-large" onClick={open}>
-									画像アップロード
-								</Button>
-							)
-						)}
-					/>
-				</MediaUploadCheck>
-			</div>
+			<MediaUploadCheck>
+				<MediaUpload
+					onSelect={onChangeMedia}
+					allowedTypes={['image']}
+					value={mediaId}
+					render={({ open }) => (
+						mediaId && mediaUrl ? (
+							<a href={mediaUrl} data-lightbox={dataLightbox} data-title={mediaCaption} className="simple-lightbox-block">
+								<img src={mediaUrl} alt={mediaAlt} />
+							</a>
+						) : (
+							<Button className="button button-large" onClick={open}>
+								画像アップロード
+							</Button>
+						)
+					)}
+				/>
+			</MediaUploadCheck>
 		</div>
 	);
 }
