@@ -11,7 +11,14 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+    InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
+
+import { PanelBody, TextControl, Button } from '@wordpress/components'
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -20,6 +27,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import Label from './components/Label';
+import HelperText from './components/HelperText';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -29,13 +38,47 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit({ attributes, setAttributes }) {
+	const { mediaId, mediaUrl } = attributes;
+
+	const onChangeDataLightbox = ( dataLightbox ) => {
+		setAttributes( { dataLightbox: dataLightbox } );
+	};
+
+	const onChangeMedia = (media) => {
+		setAttributes( {
+			mediaUrl: media.url,
+			mediaId: media.id,
+		} );
+	};
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Simple Lightbox Block – hello from the editor!',
-				'simple-lightbox-block'
-			) }
-		</p>
+		<div { ...useBlockProps() }>
+			<InspectorControls key="setting">
+				<PanelBody title="ブロックの設定">
+					<Label htmlFor="dataLightbox">Lightboxの設定ID</Label>
+					<TextControl value={attributes.dataLightbox} placeholder="lightbox" onChange={onChangeDataLightbox} className="text-field" />
+					<HelperText>※異なる画像に同じIDを設定すると複数枚の挙動になります</HelperText>
+				</PanelBody>
+			</InspectorControls>
+			<div className="image">
+				<MediaUploadCheck>
+					<MediaUpload
+						onSelect={onChangeMedia}
+						allowedTypes={['image']}
+						value={mediaId}
+						render={({ open }) => (
+							mediaId && mediaUrl ? (
+								<img src={mediaUrl} />
+							) : (
+								<Button className="button button-large" onClick={open}>
+									画像アップロード
+								</Button>
+							)
+						)}
+					/>
+				</MediaUploadCheck>
+			</div>
+		</div>
 	);
 }
