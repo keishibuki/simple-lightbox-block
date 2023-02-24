@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Simple Lightbox Block
- * Description:       Example static block scaffolded with Create Block tool.
+ * Description:       A custom block plugin to extend the editor of WordPress. Adds Lightbox functionality to images.
  * Requires at least: 5.9
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            STUDIO ORANGE
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       simple-lightbox-block
@@ -22,7 +22,6 @@
  */
 function create_block_simple_lightbox_block_block_init() {
 	register_block_type( __DIR__ . '/build' );
-
 
 	add_action(
 		'wp_enqueue_scripts',
