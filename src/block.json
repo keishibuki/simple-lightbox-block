@@ -3,7 +3,7 @@
 	"apiVersion": 2,
 	"name": "studio-orange/simple-lightbox-block",
 	"version": "0.1.0",
-	"title": "Simple Lightbox Block",
+	"title": "画像（モーダル）",
 	"category": "media",
 	"icon": "format-image",
 	"description": "Example static block scaffolded with Create Block tool.",
