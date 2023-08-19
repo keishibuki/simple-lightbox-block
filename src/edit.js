@@ -16,6 +16,8 @@ import {
     InspectorControls,
 	MediaUpload,
 	MediaUploadCheck,
+	BlockControls,
+	MediaReplaceFlow,
 } from '@wordpress/block-editor';
 
 import { PanelBody, TextControl, Button } from '@wordpress/components'
@@ -58,6 +60,16 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<div { ...useBlockProps() }>
+			<BlockControls>
+				<MediaReplaceFlow
+					mediaId={mediaId}
+					mediaURL={mediaUrl}
+					allowedTypes={['image']}
+					accept="image/*"
+					onSelect={onChangeMedia}
+					onSelectURL={onChangeMedia}
+				/>
+			</BlockControls>
 			<InspectorControls key="setting">
 				<PanelBody title="ブロックの設定">
 					<Label htmlFor="dataLightbox">Lightboxの設定ID</Label>

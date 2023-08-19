@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-
+import { useBlockProps } from '@wordpress/block-editor';
 import Lightbox from "./components/Lightbox";
 
 
@@ -23,6 +23,7 @@ export default function save(props) {
 
 	return (
 		<Lightbox
+			props={useBlockProps.save()}
 			mediaUrl={mediaUrl}
 			mediaAlt={mediaAlt}
 			mediaCaption={mediaCaption}
