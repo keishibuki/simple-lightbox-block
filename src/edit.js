@@ -59,7 +59,7 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...useBlockProps({ className: 'splide__slide' }) }>
 			<BlockControls>
 				<MediaReplaceFlow
 					mediaId={mediaId}
